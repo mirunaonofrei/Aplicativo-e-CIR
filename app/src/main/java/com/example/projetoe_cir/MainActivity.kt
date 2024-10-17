@@ -8,6 +8,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -17,6 +18,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.projetoe_cir.ui.theme.ProjetoECIRTheme
+import androidx.compose.foundation.Image
+
 
 
 
@@ -41,13 +44,47 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun AppNavigation(navController: NavHostController) {
-    NavHost(navController = navController, startDestination = "login") {
+    NavHost(navController = navController, startDestination = "menu") {
+        composable("menu") { MenuScreen(navController) }
         composable("login") { LoginScreen(navController) }
         composable("register") { RegisterScreen(navController) }
         composable("home") { HomeScreen(navController) }
         composable("profile") { ProfileScreen(navController) }
     }
 }
+
+//@Preview(showBackground = true)
+@Composable
+fun MenuScreen(navController: NavHostController) {
+    //ImagemFundo(navController)
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(text = "Inicio Screen", fontSize = 24.sp, fontWeight = FontWeight.Bold)
+        Spacer(modifier = Modifier.height(16.dp))
+        Button(onClick = { navController.navigate("login") }) {
+            Text(text = "Login")
+        }
+    }
+}
+
+/*
+@Composable
+fun ImagemFundo(navController: NavHostController, modifier: Modifier = Modifier) {
+    val image = painterResource(R.drawable.planodefundomenu)
+    Box(modifier){
+        Image(
+            painter = image,
+            contentDescription = null
+        )
+        MenuScreen(navController = navController)
+    }
+}
+*/
 
 @Composable
 fun ProfileScreen(navController: NavHostController) {
@@ -60,8 +97,8 @@ fun ProfileScreen(navController: NavHostController) {
     ) {
         Text(text = "Profile Screen", fontSize = 24.sp, fontWeight = FontWeight.Bold)
         Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = { navController.popBackStack() }) {
-            Text(text = "Go Back")
+        Button(onClick = { navController.navigate("home") }) {
+            Text(text = "Voltar para o Menu")
         }
     }
 }
@@ -78,7 +115,19 @@ fun HomeScreen(navController: NavHostController) {
         Text(text = "Home Screen", fontSize = 24.sp, fontWeight = FontWeight.Bold)
         Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = { navController.navigate("profile") }) {
-            Text(text = "Go to Profile")
+            Text(text = "Dados Pessoais")
+        }
+        Button(onClick = { navController.navigate("profile") }) {
+            Text(text = "Certificados e Documentos")
+        }
+        Button(onClick = { navController.navigate("profile") }) {
+            Text(text = "Registro Embarques")
+        }
+        Button(onClick = { navController.navigate("profile") }) {
+            Text(text = "Calendário Embarques")
+        }
+        Button(onClick = { navController.navigate("menu") }) {
+            Text(text = "Sair")
         }
     }
 }
@@ -95,7 +144,7 @@ fun RegisterScreen(navController: NavHostController) {
         Text(text = "Register Screen", fontSize = 24.sp, fontWeight = FontWeight.Bold)
         Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = { navController.navigate("login") }) {
-            Text(text = "Go to Login")
+            Text(text = "Ir para Login")
         }
     }
 }

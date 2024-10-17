@@ -19,8 +19,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.projetoe_cir.ui.theme.ProjetoECIRTheme
 import androidx.compose.foundation.Image
-
-
+import androidx.compose.ui.layout.ContentScale
 
 
 class MainActivity : ComponentActivity() {
@@ -53,38 +52,45 @@ fun AppNavigation(navController: NavHostController) {
     }
 }
 
-//@Preview(showBackground = true)
 @Composable
 fun MenuScreen(navController: NavHostController) {
-    //ImagemFundo(navController)
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Text(text = "Inicio Screen", fontSize = 24.sp, fontWeight = FontWeight.Bold)
-        Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = { navController.navigate("login") }) {
-            Text(text = "Login")
+    ImagemFundo(navController) // Chama a função que inclui a imagem de fundo
+}
+
+@Composable
+fun ImagemFundo(navController: NavHostController, modifier: Modifier = Modifier) {
+    val image = painterResource(R.drawable.planodefundomenu)
+    Box(modifier = Modifier.fillMaxSize()) {
+        Image(
+            painter = image,
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Text(text = "e-CIR", fontSize = 40.sp, fontWeight = FontWeight.Bold)
+            Spacer(modifier = Modifier.height(30.dp))
+            Button(onClick = { navController.navigate("login") }) {
+                Text(text = "Entrar")
+            }
+            Button(onClick = { navController.navigate("login") }) {
+                Text(text = "Entrar como Empresa")
+            }
+            Text(text = "Primeira vez aqui?", fontSize = 18.sp, fontWeight = FontWeight.Thin)
+            Spacer(modifier = Modifier.height(16.dp))
+            Button(onClick = { navController.navigate("register") }) {
+                Text(text = "Registre-se!")
+            }
         }
     }
 }
 
-/*
-@Composable
-fun ImagemFundo(navController: NavHostController, modifier: Modifier = Modifier) {
-    val image = painterResource(R.drawable.planodefundomenu)
-    Box(modifier){
-        Image(
-            painter = image,
-            contentDescription = null
-        )
-        MenuScreen(navController = navController)
-    }
-}
-*/
 
 @Composable
 fun ProfileScreen(navController: NavHostController) {

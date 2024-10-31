@@ -19,6 +19,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.projetoe_cir.ui.theme.ProjetoECIRTheme
 import androidx.compose.foundation.Image
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 
 
@@ -58,11 +59,26 @@ fun MenuScreen(navController: NavHostController) {
 }
 
 @Composable
+fun AnchorLogo(modifier: Modifier = Modifier) {
+    val logoImage = painterResource(R.drawable.logoecir) // Substitua pelo nome correto da imagem
+
+    Image(
+        painter = logoImage,
+        contentDescription = null,
+        modifier = modifier
+            .size(300.dp) // Ajuste o tamanho conforme necessário
+            //.align(Alignment.TopCenter)
+            .padding(top = 1.dp) // Alinha com espaçamento no topo e embaixo
+    )
+}
+
+@Composable
 fun ImagemFundo(navController: NavHostController, modifier: Modifier = Modifier) {
-    val image = painterResource(R.drawable.planodefundomenu)
+    val backgroundImage = painterResource(R.drawable.planodefundomenu)
+
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
-            painter = image,
+            painter = backgroundImage,
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.Crop
@@ -70,22 +86,62 @@ fun ImagemFundo(navController: NavHostController, modifier: Modifier = Modifier)
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp),
+                .padding(horizontal = 32.dp, vertical = 24.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text(text = "e-CIR", fontSize = 40.sp, fontWeight = FontWeight.Bold)
-            Spacer(modifier = Modifier.height(30.dp))
-            Button(onClick = { navController.navigate("login") }) {
+            // Logo da âncora
+            AnchorLogo()
+
+            // Título
+            Text(
+                text = "e-CIR",
+                fontSize = 40.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // Botão Entrar
+            Button(
+                onClick = { navController.navigate("login") },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp)
+            ) {
                 Text(text = "Entrar")
             }
-            Button(onClick = { navController.navigate("login") }) {
+
+            // Botão Entrar como Empresa
+            Button(
+                onClick = { navController.navigate("login") },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp)
+            ) {
                 Text(text = "Entrar como Empresa")
             }
-            Text(text = "Primeira vez aqui?", fontSize = 18.sp, fontWeight = FontWeight.Thin)
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            // Texto de Primeira vez aqui?
+            Text(
+                text = "Primeira vez aqui?",
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Thin,
+                color = Color.White
+            )
+
             Spacer(modifier = Modifier.height(16.dp))
-            Button(onClick = { navController.navigate("register") }) {
-                Text(text = "Registre-se!")
+
+            // Botão Cadastrar-se
+            Button(
+                onClick = { navController.navigate("register") },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp)
+            ) {
+                Text(text = "Cadastre-se!")
             }
         }
     }
@@ -180,6 +236,6 @@ fun LoginScreen(navController: NavHostController) {
 @Composable
 fun DefaultPreview() {
     ProjetoECIRTheme {
-        LoginScreen(rememberNavController())
+        MenuScreen(rememberNavController())
     }
 }

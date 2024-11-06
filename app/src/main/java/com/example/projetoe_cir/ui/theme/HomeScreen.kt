@@ -39,5 +39,11 @@ fun HomeScreen(navController: NavController) {
         ) {
             Text("Calendário Embarques")
         }
+        Button(
+            onClick = { navController.navigate("menu") },
+            modifier = Modifier.padding(16.dp)
+        ) {
+            Text("Sair")
+        }
     }
 }

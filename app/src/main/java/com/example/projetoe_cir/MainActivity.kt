@@ -21,7 +21,10 @@ import com.example.projetoe_cir.ui.theme.ProjetoECIRTheme
 import androidx.compose.foundation.Image
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-
+import com.example.projetoe_cir.ui.theme.RegisterScreen
+import com.example.projetoe_cir.ui.theme.LoginScreen
+import com.example.projetoe_cir.ui.theme.HomeScreen
+import com.example.projetoe_cir.ui.theme.MenuScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,10 +56,9 @@ fun AppNavigation(navController: NavHostController) {
     }
 }
 
-@Composable
-fun MenuScreen(navController: NavHostController) {
-    ImagemFundo(navController) // Chama a função que inclui a imagem de fundo
-}
+
+
+
 
 @Composable
 fun AnchorLogo(modifier: Modifier = Modifier) {
@@ -66,85 +68,9 @@ fun AnchorLogo(modifier: Modifier = Modifier) {
         painter = logoImage,
         contentDescription = null,
         modifier = modifier
-            .size(300.dp) // Ajuste o tamanho conforme necessário
-            //.align(Alignment.TopCenter)
+            .size(200.dp) // Ajuste o tamanho conforme necessário
             .padding(top = 1.dp) // Alinha com espaçamento no topo e embaixo
     )
-}
-
-@Composable
-fun ImagemFundo(navController: NavHostController, modifier: Modifier = Modifier) {
-    val backgroundImage = painterResource(R.drawable.planodefundomenu)
-
-    Box(modifier = Modifier.fillMaxSize()) {
-        Image(
-            painter = backgroundImage,
-            contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop
-        )
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 32.dp, vertical = 24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            // Logo da âncora
-            AnchorLogo()
-
-            // Título
-            Text(
-                text = "e-CIR",
-                fontSize = 40.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.White
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-
-            // Botão Entrar
-            Button(
-                onClick = { navController.navigate("login") },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 8.dp)
-            ) {
-                Text(text = "Entrar")
-            }
-
-            // Botão Entrar como Empresa
-            Button(
-                onClick = { navController.navigate("login") },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 8.dp)
-            ) {
-                Text(text = "Entrar como Empresa")
-            }
-
-            Spacer(modifier = Modifier.height(8.dp))
-
-            // Texto de Primeira vez aqui?
-            Text(
-                text = "Primeira vez aqui?",
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Thin,
-                color = Color.White
-            )
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            // Botão Cadastrar-se
-            Button(
-                onClick = { navController.navigate("register") },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 8.dp)
-            ) {
-                Text(text = "Cadastre-se!")
-            }
-        }
-    }
 }
 
 
@@ -165,72 +91,6 @@ fun ProfileScreen(navController: NavHostController) {
     }
 }
 
-@Composable
-fun HomeScreen(navController: NavHostController) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Text(text = "Home Screen", fontSize = 24.sp, fontWeight = FontWeight.Bold)
-        Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = { navController.navigate("profile") }) {
-            Text(text = "Dados Pessoais")
-        }
-        Button(onClick = { navController.navigate("profile") }) {
-            Text(text = "Certificados e Documentos")
-        }
-        Button(onClick = { navController.navigate("profile") }) {
-            Text(text = "Registro Embarques")
-        }
-        Button(onClick = { navController.navigate("profile") }) {
-            Text(text = "Calendário Embarques")
-        }
-        Button(onClick = { navController.navigate("menu") }) {
-            Text(text = "Sair")
-        }
-    }
-}
-
-@Composable
-fun RegisterScreen(navController: NavHostController) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Text(text = "Register Screen", fontSize = 24.sp, fontWeight = FontWeight.Bold)
-        Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = { navController.navigate("login") }) {
-            Text(text = "Ir para Login")
-        }
-    }
-}
-
-@Composable
-fun LoginScreen(navController: NavHostController) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Text(text = "Login Screen", fontSize = 24.sp, fontWeight = FontWeight.Bold)
-        Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = { navController.navigate("home") }) {
-            Text(text = "Login")
-        }
-        Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = { navController.navigate("register") }) {
-            Text(text = "Register")
-        }
-    }
-}
 
 @Preview(showBackground = true)
 @Composable

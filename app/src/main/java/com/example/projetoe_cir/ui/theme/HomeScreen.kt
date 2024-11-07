@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -57,32 +58,59 @@ fun HomeScreen(navController: NavController) {
             Image(
                 painter = painterResource(id = R.drawable.logoecir), // Certifique-se de ter o ícone de âncora na pasta de recursos.
                 contentDescription = "Logo",
-                modifier = Modifier.size(120.dp) // Aumente o tamanho da imagem da logo
+                modifier = Modifier.size(200.dp) // Aumente o tamanho da imagem da logo
             )
 
             Spacer(modifier = Modifier.height(32.dp))
 
-            // Botões organizados em grade 2x2
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(16.dp),
-                modifier = Modifier.padding(16.dp)
+            // Botões organizados em grade 2x2 com divisórias
+            Column(
+                modifier = Modifier
+                    .width(300.dp) // Ajuste o valor conforme necessário
             ) {
-                HomeButton("Dados Pessoais", R.drawable.icons8_identidade_50__1_) {
-                    navController.navigate("profile")
+                Row(
+                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(150.dp) // Ajuste a altura dos quadrantes
+                ) {
+                    HomeButton("Dados Pessoais", R.drawable.icons8_identidade_50__1_) {
+                        navController.navigate("profile")
+                    }
+                    Divider(
+                        color = Color(0xFFC49A6C),
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .width(1.dp)
+                    )
+                    HomeButton("Certificados & Documentos", R.drawable.icons8_documentos_48) {
+                        navController.navigate("documents")
+                    }
                 }
-                HomeButton("Certificados & Documentos", R.drawable.icons8_documentos_48) {
-                    navController.navigate("documents")
-                }
-            }
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(16.dp),
-                modifier = Modifier.padding(16.dp)
-            ) {
-                HomeButton("Registro Embarques", R.drawable.icons8_passaporte_50) {
-                    navController.navigate("boarding")
-                }
-                HomeButton("Calendário Embarques", R.drawable.icons8_calend_rio_32) {
-                    navController.navigate("calendar")
+                Divider(
+                    color = Color(0xFFC49A6C),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(1.dp)
+                )
+                Row(
+                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(150.dp) // Ajuste a altura dos quadrantes
+                ) {
+                    HomeButton("Registro Embarques", R.drawable.icons8_passaporte_50) {
+                        navController.navigate("boarding")
+                    }
+                    Divider(
+                        color = Color(0xFFC49A6C),
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .width(1.dp)
+                    )
+                    HomeButton("Calendário Embarques", R.drawable.icons8_calend_rio_32) {
+                        navController.navigate("calendar")
+                    }
                 }
             }
         }
@@ -95,24 +123,24 @@ fun HomeButton(text: String, iconId: Int, onClick: () -> Unit) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
         modifier = Modifier
-            .size(120.dp)
-            .padding(8.dp)
-            .clickable(onClick = onClick) // Tornar o botão clicável
-            .background(Color(0xFF0A0A32)) // Ajuste a cor de fundo, se necessário
-            .padding(16.dp) // Padding interno para aumentar a área de clique
+            .size(150.dp) // Ajuste o tamanho do quadrante do botão
+            .clickable(onClick = onClick)
+            .padding(16.dp)
     ) {
         Icon(
             painter = painterResource(id = iconId),
             contentDescription = text,
             tint = Color(0xFFC49A6C),
-            modifier = Modifier.size(48.dp) // Tamanho do ícone
+            modifier = Modifier.size(55.dp) // Tamanho do ícone
         )
         Spacer(modifier = Modifier.height(8.dp)) // Espaço entre o ícone e o texto
         Text(
             text = text,
             color = Color.White,
             fontSize = 12.sp,
-            modifier = Modifier.align(Alignment.CenterHorizontally)
+            textAlign = TextAlign.Center,
+            modifier = Modifier.align(Alignment.CenterHorizontally),
+            maxLines = 2 // Permite que o texto quebre em até duas linhas
         )
     }
 }

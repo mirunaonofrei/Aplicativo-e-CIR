@@ -23,7 +23,7 @@ fun DocumentsScreen(navController: NavController) {
             onClick = { navController.navigate("home") },
             modifier = Modifier.padding(16.dp)
         ) {
-            Text("Voltar")
+            Text("SAIR DA TELA DE CERTIFICADOS E DOCUMENTOS")
         }
 
     }

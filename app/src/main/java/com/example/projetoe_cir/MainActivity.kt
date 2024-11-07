@@ -21,10 +21,14 @@ import com.example.projetoe_cir.ui.theme.ProjetoECIRTheme
 import androidx.compose.foundation.Image
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import com.example.projetoe_cir.ui.theme.CalendarScreen
+import com.example.projetoe_cir.ui.theme.DocumentsScreen
 import com.example.projetoe_cir.ui.theme.RegisterScreen
 import com.example.projetoe_cir.ui.theme.LoginScreen
 import com.example.projetoe_cir.ui.theme.HomeScreen
 import com.example.projetoe_cir.ui.theme.MenuScreen
+import com.example.projetoe_cir.ui.theme.MenuTopScreen
+import com.example.projetoe_cir.ui.theme.ProfileScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,7 +56,10 @@ fun AppNavigation(navController: NavHostController) {
         composable("login") { LoginScreen(navController) }
         composable("register") { RegisterScreen(navController) }
         composable("home") { HomeScreen(navController) }
-        composable("profile") { ProfileScreen(navController) }
+        composable("profile") { ProfileScreen(navController)}
+        composable("documents"){ DocumentsScreen(navController)}
+        composable("calendar"){ CalendarScreen(navController)}
+        composable("menutop"){ MenuTopScreen(navController)}
     }
 }
 
